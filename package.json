@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
+    "@mui/x-date-pickers": "^8.8.0",
+    "dayjs": "^1.11.13",
+    "react-use-gesture": "^9.1.3"
+  }
+}
