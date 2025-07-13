@@ -1,17 +1,27 @@
 #!/bin/bash
 set -e
 
-# Railway에서 안전하게 서버 시작
-echo "🚀 Starting Rails server for Railway deployment..."
+echo "🚀 Railway deployment starting..."
 
-# PORT 환경변수 확인 및 기본값 설정
-if [ -z "$PORT" ]; then
-  export PORT=8080
-  echo "📍 PORT not set, using default: $PORT"
+# 환경 확인
+echo "📍 RAILS_ENV: ${RAILS_ENV:-not_set}"
+echo "📍 PORT: ${PORT:-not_set}"
+echo "📍 DATABASE_URL: ${DATABASE_URL:+set}"
+
+# PORT 기본값 설정
+export PORT=${PORT:-8080}
+echo "📍 Using PORT: $PORT"
+
+# 데이터베이스 연결 테스트
+echo "🔍 Testing database connection..."
+if bundle exec rails runner "ActiveRecord::Base.connection.execute('SELECT 1')" 2>/dev/null; then
+  echo "✅ Database connection successful"
 else
-  echo "📍 Using PORT: $PORT"
+  echo "❌ Database connection failed"
+  echo "🔧 Attempting database setup..."
+  bundle exec rails db:create db:migrate db:seed || true
 fi
 
-# Puma 직접 실행 (Rails 명령어 우회)
-echo "🔧 Starting Puma server..."
-exec bundle exec puma -C config/puma.rb
+# 서버 시작
+echo "🔧 Starting Puma server on port $PORT..."
+exec bundle exec puma -p $PORT -e ${RAILS_ENV:-production}
