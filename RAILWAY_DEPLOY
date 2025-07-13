@@ -1,0 +1,12 @@
+# RAILWAY DEPLOYMENT FORCE REBUILD
+# This file forces Railway to rebuild from scratch
+# Railway should use the updated Procfile:
+# web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e production
+# release: bundle exec rake db:migrate
+
+REBUILD_TIMESTAMP=$(date)
+COMMIT_HASH=$(git rev-parse HEAD)
+
+echo "Forcing Railway rebuild..."
+echo "Timestamp: $REBUILD_TIMESTAMP"
+echo "Commit: $COMMIT_HASH"
