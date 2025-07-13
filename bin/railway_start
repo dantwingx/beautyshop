@@ -1,16 +1,20 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Railway Start Script Debug Mode"
-echo "RAILS_ENV: ${RAILS_ENV:-not_set}"
-echo "PORT: ${PORT:-not_set}"
-echo "DATABASE_URL: ${DATABASE_URL:+configured}"
+echo "🚀 Railway Start Script - Bypass All Config Mode"
+echo "All environment variables:"
+env | grep -E "(PORT|BIND|PUMA|RAILS)" | sort
 
-# Force environment variables
+# Clear any problematic environment variables
+unset PUMA_BIND
+unset BIND
+unset WEB_BIND
+
+# Force clean environment
 export RAILS_ENV=production
 export PORT=${PORT:-3000}
 
-echo "🔧 Starting with PORT: $PORT using puma config"
+echo "🔧 Starting with minimal puma command - no config file"
 
-# Use puma config file (fixed bind issue)
-exec bundle exec puma -C config/puma.rb
+# Bypass all config files - use direct puma command
+exec bundle exec puma -p $PORT -e production
