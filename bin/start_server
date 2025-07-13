@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+# Railway에서 안전하게 서버 시작
+echo "🚀 Starting Rails server for Railway deployment..."
+
+# PORT 환경변수 확인 및 기본값 설정
+if [ -z "$PORT" ]; then
+  export PORT=8080
+  echo "📍 PORT not set, using default: $PORT"
+else
+  echo "📍 Using PORT: $PORT"
+fi
+
+# Puma 직접 실행 (Rails 명령어 우회)
+echo "🔧 Starting Puma server..."
+exec bundle exec puma -C config/puma.rb
