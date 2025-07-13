@@ -10,7 +10,7 @@ echo "DATABASE_URL: ${DATABASE_URL:+configured}"
 export RAILS_ENV=production
 export PORT=${PORT:-3000}
 
-echo "🔧 Starting with PORT: $PORT"
+echo "🔧 Starting with PORT: $PORT using puma config"
 
-# Use direct puma command to avoid Rails server issues
-exec bundle exec puma -p $PORT -e production
+# Use puma config file (fixed bind issue)
+exec bundle exec puma -C config/puma.rb

@@ -28,11 +28,7 @@ threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests
-port_num = ENV.fetch("PORT", "3000").to_i
-port port_num
-
-# Bind to all interfaces for Railway  
-bind "tcp://0.0.0.0:#{port_num}"
+port ENV.fetch("PORT") { 3000 }
 
 # Set environment explicitly for Railway
 environment ENV.fetch("RAILS_ENV", "production")
