@@ -35,4 +35,5 @@ RUN bundle exec rake assets:precompile || true
 EXPOSE 3000
 
 # Start Rails server directly without any wrappers
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+# Use shell form to allow environment variable expansion
+CMD sh -c "bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}"
