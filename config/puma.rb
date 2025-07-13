@@ -34,6 +34,9 @@ port port_num
 # Bind to all interfaces for Railway  
 bind "tcp://0.0.0.0:#{port_num}"
 
+# Set environment explicitly for Railway
+environment ENV.fetch("RAILS_ENV", "production")
+
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
 

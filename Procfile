@@ -1,4 +1,4 @@
-# Railway Deployment - Simplified for debugging
-web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e production
+# Railway Deployment - Use config file for all settings
+web: bundle exec puma -C config/puma.rb
 
-# Note: release phase temporarily removed for debugging
+# Note: All port and environment settings in puma.rb
