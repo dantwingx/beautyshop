@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  # Handle OPTIONS requests for CORS preflight
+  match '*path', to: 'application#cors_preflight_check', via: :options
+
   # Root route for API
   root to: proc { [200, { "Content-Type" => "application/json" }, [{ 
     message: "Beauty Booking API", 

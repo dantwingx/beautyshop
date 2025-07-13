@@ -7,11 +7,13 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
+    # Allow all origins but without credentials for public API
     origins "*"
 
     resource "*",
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
-      expose: ['Authorization']
+      expose: ['Authorization', 'Content-Type', 'Accept'],
+      max_age: 86400
   end
 end
