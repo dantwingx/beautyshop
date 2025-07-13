@@ -71,6 +71,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # Railway-specific configurations
+  config.force_ssl = false  # Railway handles SSL termination
+  config.log_level = :info
 
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
