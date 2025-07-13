@@ -81,3 +81,5 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
+  # Simplified production config for Railway
+  prepared_statements: false
