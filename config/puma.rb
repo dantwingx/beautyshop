@@ -28,7 +28,13 @@ threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 8090 for development.
-port ENV.fetch("PORT") { 8090 }
+port_num = ENV.fetch("PORT", "8090").to_i
+port port_num
+
+# Bind to all interfaces in production for Railway
+if ENV["RAILS_ENV"] == "production"
+  bind "tcp://0.0.0.0:#{port_num}"
+end
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
