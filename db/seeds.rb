@@ -2,6 +2,10 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+# Only create seed data if database is empty
+if Shop.count == 0
+  puts "🏪 Creating seed data for Beauty Booking App..."
+
 # Users
 user1 = User.create!(
   email: "customer@example.com",
@@ -164,7 +168,10 @@ Service.create!(
   duration: 50
 )
 
-puts "Seed data created successfully!"
-puts "Created #{User.count} users"
-puts "Created #{Shop.count} shops"
-puts "Created #{Service.count} services"
+  puts "✅ Seed data created successfully!"
+  puts "👤 Created #{User.count} users"
+  puts "🏪 Created #{Shop.count} shops"
+  puts "💼 Created #{Service.count} services"
+else
+  puts "⏭️  Database already has data, skipping seed creation"
+end
