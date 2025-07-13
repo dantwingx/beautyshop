@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+echo "🚀 Railway Start Script Debug Mode"
+echo "RAILS_ENV: ${RAILS_ENV:-not_set}"
+echo "PORT: ${PORT:-not_set}"
+echo "DATABASE_URL: ${DATABASE_URL:+configured}"
+
+# Force environment variables
+export RAILS_ENV=production
+export PORT=${PORT:-3000}
+
+echo "🔧 Starting with PORT: $PORT"
+
+# Use direct puma command to avoid Rails server issues
+exec bundle exec puma -p $PORT -e production
