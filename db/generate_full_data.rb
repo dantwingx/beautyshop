@@ -108,7 +108,7 @@ shops = []
       monday: "10:00-20:00", tuesday: "10:00-20:00", wednesday: "10:00-20:00",
       thursday: "10:00-20:00", friday: "10:00-21:00", saturday: "10:00-19:00", sunday: "휴무"
     },
-    image_url: "https://source.unsplash.com/400x300/?hair,salon,#{i}"
+    image_urls: ["https://source.unsplash.com/400x300/?hair,salon,#{i}"]
   )
 end
 
@@ -130,7 +130,7 @@ end
       monday: "11:00-21:00", tuesday: "11:00-21:00", wednesday: "11:00-21:00",
       thursday: "11:00-21:00", friday: "11:00-22:00", saturday: "10:00-20:00", sunday: "10:00-19:00"
     },
-    image_url: "https://source.unsplash.com/400x300/?beauty,nail,spa,#{i}"
+    image_urls: ["https://source.unsplash.com/400x300/?beauty,nail,spa,#{i}"]
   )
 end
 
@@ -152,7 +152,7 @@ end
       monday: "06:00-23:00", tuesday: "06:00-23:00", wednesday: "06:00-23:00",
       thursday: "06:00-23:00", friday: "06:00-23:00", saturday: "08:00-21:00", sunday: "08:00-20:00"
     },
-    image_url: "https://source.unsplash.com/400x300/?gym,fitness,workout,#{i}"
+    image_urls: ["https://source.unsplash.com/400x300/?gym,fitness,workout,#{i}"]
   )
 end
 
@@ -174,7 +174,7 @@ end
       monday: "07:00-21:00", tuesday: "07:00-21:00", wednesday: "07:00-21:00",
       thursday: "07:00-21:00", friday: "07:00-21:00", saturday: "09:00-18:00", sunday: "10:00-17:00"
     },
-    image_url: "https://source.unsplash.com/400x300/?pilates,yoga,wellness,#{i}"
+    image_urls: ["https://source.unsplash.com/400x300/?pilates,yoga,wellness,#{i}"]
   )
 end
 
