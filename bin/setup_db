@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+echo "🔧 Database Setup Script"
+echo "======================="
+
+# Check if we're in production with a database
+if [ -z "$DATABASE_URL" ]; then
+  echo "❌ No DATABASE_URL found. Are you connected to Railway?"
+  exit 1
+fi
+
+echo "✅ DATABASE_URL found"
+
+# Create database (if needed)
+echo "📦 Creating database structure..."
+bundle exec rails db:create 2>/dev/null || echo "Database already exists"
+
+# Run migrations
+echo "🏗️  Running migrations..."
+bundle exec rails db:migrate
+
+# Check migration status
+echo "📊 Migration status:"
+bundle exec rails db:migrate:status
+
+# Seed database
+echo "🌱 Seeding database..."
+bundle exec rails db:seed
+
+echo "✅ Database setup complete!"
+echo "📊 Table count:"
+bundle exec rails runner "puts ActiveRecord::Base.connection.tables.count"
