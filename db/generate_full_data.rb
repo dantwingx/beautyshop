@@ -336,7 +336,7 @@ puts "📅 Creating bookings..."
   stylist = Stylist.all.sample
   service = stylist.shop.services.sample
   
-  booking_date = Date.today + rand(-30..60).days
+  booking_date = Date.today + rand(1..60).days
   booking_time = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"].sample
   
   status = rand < 0.6 ? "confirmed" : (rand < 0.8 ? "pending" : "cancelled")
